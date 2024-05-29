@@ -23,6 +23,10 @@ export class AllCryptoComponent {
   filterByChange:boolean=false;
   cryptoData:CryptoDataModel[] | undefined;
 
+  // Modal things
+  isModalVisible:boolean = false;
+  selectedCrypto:CryptoDataModel | undefined;
+  //
   ngOnInit(): void {
     this.dataService.getAllCryptoData().subscribe(allData=>{
       this.cryptoData = allData;
@@ -65,5 +69,21 @@ export class AllCryptoComponent {
     }else{
       this.cryptoData=result;
     }
+  }
+
+  toggleModal(makeVisible:boolean){
+    this.isModalVisible=makeVisible;
+  }
+  // When the black overlay is clicked
+  hideOverlay(event: Event): void {
+    // Only if the overlay itself was clicked
+    if (event.target === event.currentTarget) {
+      this.toggleModal(false);
+    }
+  }
+
+  cryptoInfoClicked(cryptoClicked:CryptoDataModel){
+    this.selectedCrypto = cryptoClicked;
+    this.toggleModal(true);
   }
 }

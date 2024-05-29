@@ -20,10 +20,6 @@ export class AppComponent {
   cryptoData:CryptoDataModel[] | undefined;
 
   ngOnInit(): void {
-    // this.dataService.getSingleCryptoData().subscribe(data => {
-    //   this.cryptoData = data;
-    // });
-
     this.dataService.getAllCryptoData().subscribe(allData=>{
       this.cryptoData = allData;
     });

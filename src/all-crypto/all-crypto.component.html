@@ -7,7 +7,7 @@
 
 @if(cryptoData){
   @for (data of cryptoData; track $index) {
-    <div class="cryptoInfo" (mouseenter)="toggleClass($event.target, true)" (mouseleave)="toggleClass($event.target, false)">
+    <div class="cryptoInfo" (click)="cryptoInfoClicked(data)" (mouseenter)="toggleClass($event.target, true)" (mouseleave)="toggleClass($event.target, false)">
       <div class="mainCryptoInfo">
         <h3>{{ data.name }} (<span class="cryptoSymbol">{{ data.symbol }}</span>)</h3>
         <p>Price USD: <span class="price">{{ data.priceUsd }}</span></p>
@@ -15,8 +15,23 @@
       <div class="additionalCryptoInfo">
         <p>Market Cap USD: <span class="marketCap">{{ data.marketCapUsd }}</span></p>
         <p>Volume USD (24 Hr): <span class="volume">{{ data.volumeUsd24Hr }}</span></p>
-        <p>Change Percent (24 Hr): <span ngClass="{{data.changePercent24Hr > 0 ? 'positiveChangePercent' :'negativeChangePercent' }}"> {{ data.changePercent24Hr }}%</span></p>
+        <p>Change Percent (24 Hr): <span ngClass="{{data.changePercent24Hr > 0 ? 'positiveChangePercent' :'negativeChangePercent' }}">{{ data.changePercent24Hr }}%</span></p>
       </div>
     </div>
   }
 }
+
+<div (click)="hideOverlay($event)" id="overlay" class="overlay" [ngClass]="isModalVisible === true ? '' : 'overlayHidden'">
+  <div id="cryptoModal">
+      <h2>Name: <span class="cryptoName">{{selectedCrypto?.name}}</span></h2>
+      <p>Rank: {{selectedCrypto?.rank}}</p>
+      <p>Symbol: <span class="cryptoSymbol">{{selectedCrypto?.symbol}}</span></p>
+      <p>Supply: {{selectedCrypto?.supply}}</p>
+      <p>MaxSupply: {{selectedCrypto?.maxSupply}}</p>
+      <p>PriceUsd: <span class="price">{{selectedCrypto?.priceUsd}}</span></p>
+      <p>VolumeUsd24Hr: <span class="volume">{{selectedCrypto?.volumeUsd24Hr}}</span></p>
+      <p>ChangePercent24Hr: <span ngClass="{{selectedCrypto && selectedCrypto.changePercent24Hr > 0 ? 'positiveChangePercent' :'negativeChangePercent' }}">{{selectedCrypto?.changePercent24Hr}}</span></p>
+      <p>MarketCapUsd: {{selectedCrypto?.marketCapUsd}}</p>
+      <p>Vwap24Hr: {{selectedCrypto?.vwap24Hr}}</p>
+  </div>
+</div>
