@@ -17,7 +17,7 @@ font-style: bold;
 }
 
 *{
-    font-family: 'Roboto';
+    font-family: 'Roboto', 'sans-serif';
     font-weight: 400;
     margin: 0px;
     padding: 0px;
@@ -49,56 +49,4 @@ header{
   text-decoration: none;
   color:#fff;
   padding-left: 25px;
-}
-
-.cryptoInfo{
-  color:#fff;
-  background-color: #31363F;
-  display: flex;
-  align-items: center;
-  gap:45px;
-  padding:25px;
-  border-bottom: 2px solid black;
-}
-
-.cryptoInfoHovered{
-  background-color: #3b414d;
-}
-
-.mainCryptoInfo{
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  flex-basis: 12%;
-  text-align: center;
-}
-
-.additionalCryptoInfo{
-  display: flex;
-  gap:30px;
-}
-
-.cryptoSymbol{
-  color: #F97300;
-}
-
-.price{
-  color:#18c424;
-}
-
-.marketCap{
-  color:#EBD671;
-}
-
-.volume{
-  color:#F56D91;
-}
-
-.positiveChangePercent{
-  color:#18c424;
-}
-
-.negativeChangePercent{
-  color:#DA1212;
 }

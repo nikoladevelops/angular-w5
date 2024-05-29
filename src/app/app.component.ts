@@ -41,4 +41,8 @@ export class AppComponent {
       element.classList.remove('cryptoInfoHovered');
    }
   }
+
+  showModalWindow(selectedCrypto:CryptoDataModel){
+    
+  }
 }

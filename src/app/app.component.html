@@ -4,25 +4,10 @@
   </div>
   <nav id="mainNav">
     <ul>
-      <li><a href="#">All Crypto Prices</a></li>
-      <li><a href="#">What is crypto?</a></li>
+      <li><a href="/home">All Crypto Prices</a></li>
+      <li><a href="/crypto-help">What is crypto?</a></li>
       <li><a href="#">Contact</a></li>
     </ul>
   </nav>
 </header>
-
-@if(cryptoData){
-  @for (data of cryptoData; track $index) {
-    <div class="cryptoInfo" (mouseenter)="toggleClass($event.target, true)" (mouseleave)="toggleClass($event.target, false)">
-      <div class="mainCryptoInfo">
-        <h3>{{ data.name }} (<span class="cryptoSymbol">{{ data.symbol }}</span>)</h3>
-        <p>Price USD: <span class="price">{{ data.priceUsd }}</span></p>
-      </div>
-      <div class="additionalCryptoInfo">
-        <p>Market Cap USD: <span class="marketCap">{{ data.marketCapUsd }}</span></p>
-        <p>Volume USD (24 Hr): <span class="volume">{{ data.volumeUsd24Hr }}</span></p>
-        <p>Change Percent (24 Hr): <span ngClass="{{data.changePercent24Hr > 0 ? 'positiveChangePercent' :'negativeChangePercent' }}"> {{ data.changePercent24Hr }}%</span></p>
-      </div>
-    </div>
-  }
-}
+<router-outlet></router-outlet>

@@ -1,0 +1,22 @@
+<div class="searchDiv">
+  <input type="text" class="searchBar" name="searchBar" placeholder="Crypto Name" [(ngModel)]="searchKeyword">
+  <label for="filterByChange">Filter By Change</label>
+  <input type="checkbox" class="searchBar" name="filterByChange" [(ngModel)]="filterByChange">
+  <button class="searchBtn" (click)="searchCrypto()">Search</button>
+</div>
+
+@if(cryptoData){
+  @for (data of cryptoData; track $index) {
+    <div class="cryptoInfo" (mouseenter)="toggleClass($event.target, true)" (mouseleave)="toggleClass($event.target, false)">
+      <div class="mainCryptoInfo">
+        <h3>{{ data.name }} (<span class="cryptoSymbol">{{ data.symbol }}</span>)</h3>
+        <p>Price USD: <span class="price">{{ data.priceUsd }}</span></p>
+      </div>
+      <div class="additionalCryptoInfo">
+        <p>Market Cap USD: <span class="marketCap">{{ data.marketCapUsd }}</span></p>
+        <p>Volume USD (24 Hr): <span class="volume">{{ data.volumeUsd24Hr }}</span></p>
+        <p>Change Percent (24 Hr): <span ngClass="{{data.changePercent24Hr > 0 ? 'positiveChangePercent' :'negativeChangePercent' }}"> {{ data.changePercent24Hr }}%</span></p>
+      </div>
+    </div>
+  }
+}
