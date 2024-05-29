@@ -3,11 +3,12 @@ import { RouterOutlet } from '@angular/router';
 import { DataService } from '../data-service/data.service';
 import { CryptoDataModel } from '../data-service/CryptoDataModel';
 import { Observable } from 'rxjs';
+import { NgClass } from '@angular/common';
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterOutlet],
+  imports: [RouterOutlet, NgClass],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'
 })
@@ -16,12 +17,15 @@ export class AppComponent {
     this.dataService=dataService;
    }
 
-  cryptoData:any;
+  cryptoData:CryptoDataModel[] | undefined;
 
   ngOnInit(): void {
-    this.dataService.getBitcoinData().subscribe(data => {
-      this.cryptoData = data;
-      console.log(this.cryptoData);
+    // this.dataService.getSingleCryptoData().subscribe(data => {
+    //   this.cryptoData = data;
+    // });
+
+    this.dataService.getAllCryptoData().subscribe(allData=>{
+      this.cryptoData = allData;
     });
   }
 
@@ -30,11 +34,11 @@ export class AppComponent {
       return;
     }
 
-    let element:HTMLElement = event.children[1] as HTMLElement
+    let element:HTMLElement = event as HTMLElement;
     if (isEnter) {
-      element.classList.add('additionalCryptoInfoHovered');
+      element.classList.add('cryptoInfoHovered');
     } else {
-      element.classList.remove('additionalCryptoInfoHovered');
+      element.classList.remove('cryptoInfoHovered');
    }
   }
 }

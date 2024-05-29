@@ -11,17 +11,18 @@
   </nav>
 </header>
 
-
 @if(cryptoData){
-  <div class="cryptoInfo" (mouseenter)="toggleClass($event.target, true)" (mouseleave)="toggleClass($event.target, false)">
-    <div class="mainCryptoInfo">
-      <h2>{{ cryptoData.name }} (<span class="cryptoSymbol">{{ cryptoData.symbol }}</span>)</h2>
-      <p>Price USD: <span class="price">{{ cryptoData.priceUsd }}</span></p>
+  @for (data of cryptoData; track $index) {
+    <div class="cryptoInfo" (mouseenter)="toggleClass($event.target, true)" (mouseleave)="toggleClass($event.target, false)">
+      <div class="mainCryptoInfo">
+        <h3>{{ data.name }} (<span class="cryptoSymbol">{{ data.symbol }}</span>)</h3>
+        <p>Price USD: <span class="price">{{ data.priceUsd }}</span></p>
+      </div>
+      <div class="additionalCryptoInfo">
+        <p>Market Cap USD: <span class="marketCap">{{ data.marketCapUsd }}</span></p>
+        <p>Volume USD (24 Hr): <span class="volume">{{ data.volumeUsd24Hr }}</span></p>
+        <p>Change Percent (24 Hr): <span ngClass="{{data.changePercent24Hr > 0 ? 'positiveChangePercent' :'negativeChangePercent' }}"> {{ data.changePercent24Hr }}%</span></p>
+      </div>
     </div>
-    <div class="additionalCryptoInfo">
-      <p>Market Cap USD: <span class="marketCap">{{ cryptoData.marketCapUsd }}</span></p>
-      <p>Volume USD (24 Hr): <span class="volume">{{ cryptoData.volumeUsd24Hr }}</span></p>
-      <p>Change Percent (24 Hr): <span class="positiveChangePercent">{{ cryptoData.changePercent24Hr }}%</span></p>
-    </div>
-  </div>
+  }
 }

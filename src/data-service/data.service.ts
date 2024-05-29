@@ -7,7 +7,8 @@ import { CryptoDataModel } from './CryptoDataModel';
   providedIn: 'root'
 })
 export class DataService {
-  private apiUrl = 'https://api.coincap.io/v2/assets/bitcoin';
+  private singleCryptoApiUrl = 'https://api.coincap.io/v2/assets/bitcoin';
+  private allCryptoApiUrl = 'https://api.coincap.io/v2/assets/';
 
   constructor(private http: HttpClient) { }
 
@@ -15,8 +16,8 @@ export class DataService {
     console.log("test");
   }
 
-  getBitcoinData(): Observable<CryptoDataModel> {
-    return this.http.get<any>(this.apiUrl)
+  getSingleCryptoData(): Observable<CryptoDataModel> {
+    return this.http.get<any>(this.singleCryptoApiUrl)
       .pipe(
         map(response => {
           const formattedData = {
@@ -32,4 +33,33 @@ export class DataService {
         ),
       );
   }
+
+  /**
+   * 
+   * @returns Every single crypto's data
+   */
+  getAllCryptoData(): Observable<CryptoDataModel[]> {
+    return this.http.get<any>(this.allCryptoApiUrl).pipe(
+      map(response => {
+        let arrayOfJson = response.data;
+
+        return arrayOfJson.map((item: any) => {
+          return {
+            id: item.id,
+            rank: item.rank,
+            symbol: item.symbol,
+            name: item.name,
+            supply: parseFloat(parseFloat(item.supply).toFixed(0)),
+            maxSupply: parseFloat(parseFloat(item.maxSupply).toFixed(0)),
+            marketCapUsd: parseFloat(parseFloat(item.marketCapUsd).toFixed(3)),
+            volumeUsd24Hr: parseFloat(parseFloat(item.volumeUsd24Hr).toFixed(2)),
+            priceUsd: parseFloat(parseFloat(item.priceUsd).toFixed(2)),
+            changePercent24Hr: parseFloat(parseFloat(item.changePercent24Hr).toFixed(3)),
+            vwap24Hr: item.vwap24Hr
+          } as CryptoDataModel;
+        }) as CryptoDataModel[];
+      })
+    );
+  }
+
 }

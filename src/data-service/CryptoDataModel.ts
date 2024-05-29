@@ -9,4 +9,5 @@ export interface CryptoDataModel {
     volumeUsd24Hr: number;
     changePercent24Hr: number;
     marketCapUsd: number;
+    vwap24Hr: number
   }
