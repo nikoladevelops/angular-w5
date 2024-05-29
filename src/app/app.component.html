@@ -1,1 +1,12 @@
 <h1>Crypto app</h1>
+
+
+@if(bitcoinData){
+  <div>
+    <h2>{{ bitcoinData.data.name }} ({{ bitcoinData.data.symbol }})</h2>
+    <p>Price USD: {{ bitcoinData.data.priceUsd }}</p>
+    <p>Market Cap USD: {{ bitcoinData.data.marketCapUsd }}</p>
+    <p>Volume USD (24 Hr): {{ bitcoinData.data.volumeUsd24Hr }}</p>
+    <p>Change Percent (24 Hr): {{ bitcoinData.data.changePercent24Hr }}%</p>
+  </div>
+}
