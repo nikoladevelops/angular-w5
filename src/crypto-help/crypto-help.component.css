@@ -1,0 +1,51 @@
+.helpContent{
+    color:white;
+    padding:25px;
+    background-color: #31363F;
+    display: flex;
+    border-bottom: 1px solid black;
+    min-height: 150px;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.helpContent>section{
+    min-width: 200px;
+    flex:1;
+}
+.helpContent>section>p{
+    padding: 30px 30px 30px 5px;
+}
+
+.cryptoFeatures {
+    color: white;
+    padding: 35px;
+    background-color: #31363F;
+    border-bottom: 1px solid black;
+    min-height: 150px;
+    display: flex;
+    flex-direction: column;
+    gap:20px;
+}
+
+.cryptoFeatures>section{
+    padding: 20px 0px 20px 15px;
+    display: flex;
+    flex-direction: column;
+    background-color: #21242b;
+}
+
+.cryptoFeatures>section>p{
+    display: inline-block;
+    padding: 5px 15px 5px 15px;
+}
+
+.moreContent{
+    color:white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding:50px;
+    background-color: #31363F;
+}
