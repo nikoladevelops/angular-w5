@@ -1,12 +1,27 @@
-<h1>Crypto app</h1>
+<header>
+  <div id="logo">
+    <h1>Crypto app</h1>
+  </div>
+  <nav id="mainNav">
+    <ul>
+      <li><a href="#">All Crypto Prices</a></li>
+      <li><a href="#">What is crypto?</a></li>
+      <li><a href="#">Contact</a></li>
+    </ul>
+  </nav>
+</header>
 
 
-@if(bitcoinData){
-  <div>
-    <h2>{{ bitcoinData.data.name }} ({{ bitcoinData.data.symbol }})</h2>
-    <p>Price USD: {{ bitcoinData.data.priceUsd }}</p>
-    <p>Market Cap USD: {{ bitcoinData.data.marketCapUsd }}</p>
-    <p>Volume USD (24 Hr): {{ bitcoinData.data.volumeUsd24Hr }}</p>
-    <p>Change Percent (24 Hr): {{ bitcoinData.data.changePercent24Hr }}%</p>
+@if(cryptoData){
+  <div class="cryptoInfo" (mouseenter)="toggleClass($event.target, true)" (mouseleave)="toggleClass($event.target, false)">
+    <div class="mainCryptoInfo">
+      <h2>{{ cryptoData.name }} (<span class="cryptoSymbol">{{ cryptoData.symbol }}</span>)</h2>
+      <p>Price USD: <span class="price">{{ cryptoData.priceUsd }}</span></p>
+    </div>
+    <div class="additionalCryptoInfo">
+      <p>Market Cap USD: <span class="marketCap">{{ cryptoData.marketCapUsd }}</span></p>
+      <p>Volume USD (24 Hr): <span class="volume">{{ cryptoData.volumeUsd24Hr }}</span></p>
+      <p>Change Percent (24 Hr): <span class="positiveChangePercent">{{ cryptoData.changePercent24Hr }}%</span></p>
+    </div>
   </div>
 }

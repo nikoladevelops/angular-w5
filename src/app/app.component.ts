@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { DataService } from '../data-service/data.service';
+import { CryptoDataModel } from '../data-service/CryptoDataModel';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-root',
@@ -14,12 +16,25 @@ export class AppComponent {
     this.dataService=dataService;
    }
 
-  bitcoinData:any;
+  cryptoData:any;
 
   ngOnInit(): void {
     this.dataService.getBitcoinData().subscribe(data => {
-      this.bitcoinData = data;
-      console.log(this.bitcoinData);
+      this.cryptoData = data;
+      console.log(this.cryptoData);
     });
+  }
+
+  toggleClass(event: any | null , isEnter: boolean) {
+    if(event == null){
+      return;
+    }
+
+    let element:HTMLElement = event.children[1] as HTMLElement
+    if (isEnter) {
+      element.classList.add('additionalCryptoInfoHovered');
+    } else {
+      element.classList.remove('additionalCryptoInfoHovered');
+   }
   }
 }
